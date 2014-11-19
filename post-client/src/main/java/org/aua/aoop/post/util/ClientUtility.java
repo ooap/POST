@@ -11,8 +11,6 @@ public class ClientUtility {
 
     private static final String PKG_INTERFACES = "org.jboss.ejb.client.naming";
 
-
-
     public static Context getInitialContext() throws NamingException {
         if (initialContext == null) {
             Properties properties = new Properties();

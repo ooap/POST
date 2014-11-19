@@ -1,5 +1,6 @@
 package org.aua.aoop.post;
 
+import org.aua.aoop.post.conf.AppConfig;
 import org.aua.aoop.post.product.ProductCatalog;
 
 import java.io.Serializable;
@@ -31,7 +32,7 @@ public class Store implements Serializable {
 
     public void saveState() {
         salesLog.saveSalesLogToFile();
-        productCatalog.saveToFile("products.txt");
+        productCatalog.saveToFile(AppConfig.getInstance().getProductCatalogFileName());
     }
 
     public Terminal getTerminal() {

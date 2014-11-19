@@ -34,7 +34,7 @@
 
         <dependency>
             <groupId>org.aua.aoop.post</groupId>
-            <artifactId>post-common</artifactId>
+            <artifactId>post-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

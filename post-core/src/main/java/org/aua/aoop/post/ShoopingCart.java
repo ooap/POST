@@ -2,22 +2,31 @@ package org.aua.aoop.post;
 
 import org.aua.aoop.post.payment.AbstractPayment;
 
+import javax.ejb.Stateful;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-
-public class Sale implements Serializable {
+public class ShoopingCart implements Serializable {
     private UUID saleID;
     private List<SaleItem> saleItems;
     private AbstractPayment payment;
-    private Terminal currentITerminal;
     private String customerName;
     private Date dateTime;
     private double total;
 
+    public ShoopingCart() {
+    }
+
+    public ShoopingCart(String customerName) {
+        this.customerName = customerName;
+        dateTime = new Date();
+        saleID = UUID.randomUUID();
+        saleItems = new ArrayList<>();
+        total = 0;
+    }
 
     public void addSaleItem(SaleItem item) {
         saleItems.add(item);
@@ -36,10 +45,6 @@ public class Sale implements Serializable {
         return payment;
     }
 
-    public Terminal getCurrentTerminal() {
-        return currentITerminal;
-    }
-
     public String getCustomerName() {
         return customerName;
     }
@@ -50,15 +55,6 @@ public class Sale implements Serializable {
 
     public double getTotal() {
         return total;
-    }
-
-    public Sale(Terminal currentITerminal, String customerName) {
-        this.currentITerminal = currentITerminal;
-        this.customerName = customerName;
-        dateTime = new Date();
-        saleID = UUID.randomUUID();
-        saleItems = new ArrayList<>();
-        total = 0;
     }
 
     @Override
@@ -74,7 +70,6 @@ public class Sale implements Serializable {
                 "saleID = " + saleID +
                 "\n\t dateTime = " + dateTime +
                 "\n\t customerName = '" + customerName + '\'' +
-                "\n\t currentTerminal = " + currentITerminal +
                 "\n\t saleItems = " + saleProducts +
                 "\n\t total = " + total +
                 "\n\t payment = " + payment +

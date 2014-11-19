@@ -5,11 +5,9 @@ import org.aua.aoop.post.payment.AbstractPayment;
 import org.jboss.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Lock;
 import javax.ejb.Remote;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
-import java.rmi.RemoteException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -62,8 +60,8 @@ public class TerminalFacadeBean implements TerminalFacade {
     }
 
     @Override
-    public Sale getCurrentSale(){
-        return terminal.getCurrentSale();
+    public ShoopingCart getCurrentSale(){
+        return terminal.getCurrentShoopingCart();
     }
 
     @Override

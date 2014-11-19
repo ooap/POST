@@ -1,6 +1,7 @@
 package org.aua.aoop.post.product;
 
 import org.aua.aoop.post.Manager;
+import org.aua.aoop.post.conf.AppConfig;
 
 import java.io.*;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public class ProductCatalog  implements Serializable {
 
     public ProductCatalog(Manager manager) {
         productList = new HashMap<>();
-        initFromFile("products.txt", manager);
+        initFromFile(AppConfig.getInstance().getProductCatalogFileName(), manager);
     }
 
     // Unused method

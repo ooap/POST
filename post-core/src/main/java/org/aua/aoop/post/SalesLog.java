@@ -1,25 +1,27 @@
 package org.aua.aoop.post;
 
+import org.aua.aoop.post.conf.AppConfig;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class SalesLog implements Serializable {
-    private static String SAVE_FILE_URL = "salesLog.save";
-    Map<UUID, Sale> processedSaleList;
+    private static String SAVE_FILE_URL = AppConfig.getInstance().getSalesLogSaveFileName();
+    Map<UUID, ShoopingCart> processedSaleList;
 
     public SalesLog() {
         this.processedSaleList = new HashMap<>();
     }
 
-    public void archiveSale(Sale sale) {
-        processedSaleList.put(sale.getSaleID(), sale);
+    public void archiveSale(ShoopingCart shoopingCart) {
+        processedSaleList.put(shoopingCart.getSaleID(), shoopingCart);
     }
 
     public void printLog() {
-        for (Sale sale : processedSaleList.values()) {
-            System.out.println("\r\n" + sale.toString());
+        for (ShoopingCart shoopingCart : processedSaleList.values()) {
+            System.out.println("\r\n" + shoopingCart.toString());
         }
     }
 
@@ -45,9 +47,7 @@ public class SalesLog implements Serializable {
             Object loadedObj = objectInputStream.readObject();
             salesLog = (SalesLog) loadedObj;
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             if (objectInputStream != null) {

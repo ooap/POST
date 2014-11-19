@@ -8,7 +8,6 @@ import org.aua.aoop.post.util.ClientUtility;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
-import java.rmi.RemoteException;
 import java.util.Scanner;
 
 
@@ -123,7 +122,7 @@ public class StoreCLI {
     /**
      * Looks up and returns the proxy to remote stateless calculator bean
      *
-     * @return
+     * @return TerminalFacade remote EJB
      * @throws NamingException
      */
     private static TerminalFacade lookupRemoteTerminalFacade() throws NamingException {
@@ -136,8 +135,8 @@ public class StoreCLI {
         final String appName = "";
         // This is the module name of the deployed EJBs on the server. This is typically the jar name of the
         // EJB deployment, without the .jar suffix, but can be overridden via the ejb-jar.xml
-        // In this example, we have deployed the EJBs in a jboss-as-ejb-remote-app.jar, so the module name is
-        // jboss-as-ejb-remote-app
+        // In this example, we have deployed the EJBs in a post-ejb.jar, so the module name is
+        // post-ejb
         final String moduleName = "post-ejb";
         // AS7 allows each deployment to have an (optional) distinct name. We haven't specified a distinct name for
         // our EJB deployment, so this is an empty string
