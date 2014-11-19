@@ -3,7 +3,6 @@ package org.aua.aoop.post;
 import org.aua.aoop.post.product.ProductCatalog;
 
 import java.io.Serializable;
-import java.rmi.RemoteException;
 
 public class Store implements Serializable {
     private Manager manager;
@@ -13,11 +12,11 @@ public class Store implements Serializable {
     private Cashier cashier;
     private String merchantID;
 
-    public Store() throws RemoteException {
+    public Store(){
         startUp();
     }
 
-    public void startUp() throws RemoteException {
+    public void startUp(){
         manager = new Manager();
         productCatalog = new ProductCatalog(manager);
         salesLog = new SalesLog();

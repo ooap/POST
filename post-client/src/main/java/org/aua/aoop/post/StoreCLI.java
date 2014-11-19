@@ -4,11 +4,10 @@ import org.aua.aoop.post.payment.AbstractPayment;
 import org.aua.aoop.post.ex.ItemNotFoundException;
 import org.aua.aoop.post.ex.NotEnoughItemsException;
 import org.aua.aoop.post.ex.ProductException;
+import org.aua.aoop.post.util.ClientUtility;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RMISecurityManager;
+import javax.naming.Context;
+import javax.naming.NamingException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
 
@@ -31,16 +30,15 @@ public class StoreCLI {
     }
 
     public static void main(String[] args) {
-        System.setSecurityManager(new RMISecurityManager());
-        String remoteName = "rmi://10.15.1.172/terminal";
-        try {
-            ITerminalFacade service = (ITerminalFacade) Naming.lookup(remoteName);
+
 
             while (true) {
 
                 Scanner scanner = new Scanner(System.in);
 
                 try {
+                    TerminalFacade service = lookupRemoteTerminalFacade();
+
                     service.startNewSale(askCustomerName(scanner));
                     String upc = askUPC(scanner);
 
@@ -66,9 +64,7 @@ public class StoreCLI {
 
                         try {
                             service.addItem(upc, qty);
-                        } catch (ItemNotFoundException e) {
-                            System.out.println(e.getMessage());
-                        } catch (NotEnoughItemsException e) {
+                        } catch (ItemNotFoundException | NotEnoughItemsException e) {
                             System.out.println(e.getMessage());
                         } catch (ProductException e) {
                             e.printStackTrace();
@@ -94,9 +90,8 @@ public class StoreCLI {
                                     result = service.processPayment(AbstractPayment.PaymentType.CASH, total, "");
                                 } catch (NumberFormatException e) {
                                     System.out.println("Please enter valid amount of money");
-                                } finally {
-                                    break;
                                 }
+                                break;
 
                             case 2:     // Credit card payment
                                 System.out.print("Enter card number: ");
@@ -113,22 +108,46 @@ public class StoreCLI {
                         if (result) break;
                     }
 
-
                     System.out.println(service.getReceipt());
-//                    store.saveState();         TODO: move this server-side
 
 
-                } catch (RemoteException e) {
+                } catch (NamingException e) {
                     e.printStackTrace();
 
                 }
             }
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
     }
+
+
+
+    /**
+     * Looks up and returns the proxy to remote stateless calculator bean
+     *
+     * @return
+     * @throws NamingException
+     */
+    private static TerminalFacade lookupRemoteTerminalFacade() throws NamingException {
+
+        final Context context = ClientUtility.getInitialContext();
+        // The app name is the application name of the deployed EJBs. This is typically the ear name
+        // without the .ear suffix. However, the application name could be overridden in the application.xml of the
+        // EJB deployment on the server.
+        // Since we haven't deployed the application as a .ear, the app name for us will be an empty string
+        final String appName = "";
+        // This is the module name of the deployed EJBs on the server. This is typically the jar name of the
+        // EJB deployment, without the .jar suffix, but can be overridden via the ejb-jar.xml
+        // In this example, we have deployed the EJBs in a jboss-as-ejb-remote-app.jar, so the module name is
+        // jboss-as-ejb-remote-app
+        final String moduleName = "post-ejb";
+        // AS7 allows each deployment to have an (optional) distinct name. We haven't specified a distinct name for
+        // our EJB deployment, so this is an empty string
+        final String distinctName = "";
+        // The EJB name which by default is the simple class name of the bean implementation class
+        final String beanName = "TerminalFacadeBean";
+        // the remote view fully qualified class name
+        final String viewClassName = TerminalFacade.class.getName();
+        // let's do the lookup
+        return (TerminalFacade) context.lookup("ejb:" + appName + "/" + moduleName + "/" + distinctName + "/" + beanName + "!" + viewClassName);
+    }
+
 }

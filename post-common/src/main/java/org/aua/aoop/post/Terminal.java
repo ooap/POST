@@ -9,13 +9,8 @@ import org.aua.aoop.post.ex.NotEnoughItemsException;
 import org.aua.aoop.post.ex.ProductException;
 import org.aua.aoop.post.product.ProductSpecification;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import java.util.UUID;
 
 
@@ -33,7 +28,7 @@ public class Terminal {
      * @param  store
      * @throws RemoteException
      * */
-    public Terminal(Cashier currentCashier, Store store) throws RemoteException {
+    public Terminal(Cashier currentCashier, Store store){
         this.currentCashier = currentCashier;
         this.store = store;
         terminalID = UUID.randomUUID();
@@ -45,12 +40,12 @@ public class Terminal {
      * @param customerName name of the customer
      * @throws java.rmi.RemoteException
      */
-    public void startNewSale(String customerName) throws RemoteException {
+    public void startNewSale(String customerName){
         currentSale = new Sale(this, customerName);
         System.out.println(new Date() + "\t" + "New sale started");
     }
 
-    public void addItem(String UPC, int qty) throws ProductException, RemoteException {
+    public void addItem(String UPC, int qty) throws ProductException {
         ProductSpecification specification = store.getProductCatalog().getProductSpecByID(UPC);
         if (specification != null) {
             if (specification.getQty() >= qty) {
@@ -65,11 +60,11 @@ public class Terminal {
         }
     }
 
-    public SaleItem getCurrSaleItem() throws RemoteException {
+    public SaleItem getCurrSaleItem(){
         return currentSaleItem;
     }
 
-    public boolean processPayment(AbstractPayment.PaymentType paymentType, double amount, String info) throws RemoteException {
+    public boolean processPayment(AbstractPayment.PaymentType paymentType, double amount, String info) {
         boolean result = false;
         switch (paymentType) {
             case CASH:
@@ -93,7 +88,7 @@ public class Terminal {
     }
 
 
-    private void endSale() throws RemoteException {
+    private void endSale(){
         List<SaleItem> saleItems = currentSale.getSaleItems();
 
         for (SaleItem item : saleItems) {
@@ -104,23 +99,23 @@ public class Terminal {
         System.out.println(new Date() + "\t" + "Sale ended");
     }
 
-    public String getReceipt() throws RemoteException {
+    public String getReceipt(){
         return currentSale.toString();
     }
 
-    public double getCashBalance() throws RemoteException {
+    public double getCashBalance(){
         return ((CashPayment) currentSale.getPayment()).getBalance();
     }
 
-    public void setPayment(double total) throws RemoteException {
+    public void setPayment(double total){
         currentSale.setPayment(new CashPayment(total));
     }
 
-    public Sale getCurrentSale() throws RemoteException {
+    public Sale getCurrentSale(){
         return currentSale;
     }
 
-    public boolean productExists(String UPC) throws RemoteException {
+    public boolean productExists(String UPC) {
         return store.getProductCatalog().productExists(UPC);
     }
 

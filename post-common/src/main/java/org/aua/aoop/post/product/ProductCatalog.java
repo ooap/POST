@@ -39,8 +39,6 @@ public class ProductCatalog  implements Serializable {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
