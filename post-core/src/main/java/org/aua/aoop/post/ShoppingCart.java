@@ -9,7 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class ShoopingCart implements Serializable {
+
+public class ShoppingCart implements Serializable {
     private UUID saleID;
     private List<SaleItem> saleItems;
     private AbstractPayment payment;
@@ -17,10 +18,10 @@ public class ShoopingCart implements Serializable {
     private Date dateTime;
     private double total;
 
-    public ShoopingCart() {
+    public ShoppingCart() {
     }
 
-    public ShoopingCart(String customerName) {
+    public ShoppingCart(String customerName) {
         this.customerName = customerName;
         dateTime = new Date();
         saleID = UUID.randomUUID();
