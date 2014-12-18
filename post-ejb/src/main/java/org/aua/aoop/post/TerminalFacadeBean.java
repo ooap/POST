@@ -25,6 +25,7 @@ public class TerminalFacadeBean implements TerminalFacade {
 
     @Inject
     private Terminal terminal;
+
     @Override
     public void startNewSale(String customerName){
           terminal.startNewSale(customerName);

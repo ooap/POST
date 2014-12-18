@@ -42,11 +42,6 @@ public class Terminal {
         terminalID = UUID.randomUUID();
     }
 
-    public void setStore( Store store ) {
-        this.store = store;
-    }
-
-
     /**
      * Starts new sale
      *
