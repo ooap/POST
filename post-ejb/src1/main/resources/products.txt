@@ -1,6 +1,0 @@
-1234	Motherboard ASUS Maximus V Formula	100.0		5
-8967	White Wine	872.12		32
-0504	Ferrero Rocher	100.0		15
-0000	Khachapoori	10.0		38
-0505	Orange Juice	20.0		12
-4321	Soft Handkerchief	9.0		19
