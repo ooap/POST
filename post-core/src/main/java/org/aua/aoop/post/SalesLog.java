@@ -9,19 +9,19 @@ import java.util.UUID;
 
 public class SalesLog implements Serializable {
     private static String SAVE_FILE_URL = AppConfig.getInstance().getSalesLogSaveFileName();
-    Map<UUID, ShoopingCart> processedSaleList;
+    Map<UUID, ShoppingCart> processedSaleList;
 
     public SalesLog() {
         this.processedSaleList = new HashMap<>();
     }
 
-    public void archiveSale(ShoopingCart shoopingCart) {
-        processedSaleList.put(shoopingCart.getSaleID(), shoopingCart);
+    public void archiveSale(ShoppingCart shoppingCart) {
+        processedSaleList.put(shoppingCart.getSaleID(), shoppingCart);
     }
 
     public void printLog() {
-        for (ShoopingCart shoopingCart : processedSaleList.values()) {
-            System.out.println("\r\n" + shoopingCart.toString());
+        for (ShoppingCart shoppingCart : processedSaleList.values()) {
+            System.out.println("\r\n" + shoppingCart.toString());
         }
     }
 

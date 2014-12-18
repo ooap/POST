@@ -5,3 +5,4 @@ post-common/target/
 post-client/target/
 post-ejb/target/
 out/
+/target

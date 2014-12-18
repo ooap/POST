@@ -3,8 +3,10 @@ package org.aua.aoop.post;
 import org.aua.aoop.post.conf.AppConfig;
 import org.aua.aoop.post.product.ProductCatalog;
 
+import javax.ejb.Singleton;
 import java.io.Serializable;
 
+@Singleton
 public class Store implements Serializable {
     private Manager manager;
     private ProductCatalog productCatalog;

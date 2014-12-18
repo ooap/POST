@@ -23,7 +23,7 @@ public interface TerminalFacade extends Serializable {
 
     void setPayment(double total);
 
-    ShoopingCart getCurrentSale();
+    ShoppingCart getCurrentSale();
 
     boolean productExists(String UPC);
 }

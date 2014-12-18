@@ -60,8 +60,8 @@ public class TerminalFacadeBean implements TerminalFacade {
     }
 
     @Override
-    public ShoopingCart getCurrentSale(){
-        return terminal.getCurrentShoopingCart();
+    public ShoppingCart getCurrentSale(){
+        return terminal.getCurrentShoppingCart();
     }
 
     @Override

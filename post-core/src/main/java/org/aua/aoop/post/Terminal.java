@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Terminal {
     /**/
     private UUID terminalID;
-    private ShoopingCart currentShoopingCart;
+    private ShoppingCart currentShoppingCart;
     private Cashier currentCashier;
     private transient Store store;
     private SaleItem currentSaleItem;
@@ -40,7 +40,7 @@ public class Terminal {
      * @param customerName name of the customer
      */
     public void startNewSale(String customerName){
-        currentShoopingCart = new ShoopingCart(customerName);
+        currentShoppingCart = new ShoppingCart(customerName);
         System.out.println(new Date() + "\t" + "New sale started");
     }
 
@@ -49,8 +49,8 @@ public class Terminal {
         if (specification != null) {
             if (specification.getQty() >= qty) {
                 currentSaleItem = new SaleItem(specification, qty);
-                currentShoopingCart.addSaleItem(currentSaleItem);
-                System.out.println(new Date() + "\t" + "New item added\t" + UPC + "\t" + qty + "\t" + currentShoopingCart.getCustomerName());
+                currentShoppingCart.addSaleItem(currentSaleItem);
+                System.out.println(new Date() + "\t" + "New item added\t" + UPC + "\t" + qty + "\t" + currentShoppingCart.getCustomerName());
             } else {
                 throw new NotEnoughItemsException();
             }
@@ -67,16 +67,16 @@ public class Terminal {
         boolean result = false;
         switch (paymentType) {
             case CASH:
-                currentShoopingCart.setPayment(new CashPayment(currentShoopingCart.getTotal()));
-                result = currentShoopingCart.getPayment().process(amount);
+                currentShoppingCart.setPayment(new CashPayment(currentShoppingCart.getTotal()));
+                result = currentShoppingCart.getPayment().process(amount);
                 break;
             case CHEQUE:
-                currentShoopingCart.setPayment(new CheckPayment(info));
-                result = currentShoopingCart.getPayment().process(amount);
+                currentShoppingCart.setPayment(new CheckPayment(info));
+                result = currentShoppingCart.getPayment().process(amount);
                 break;
             case CREDIT_CARD:
-                currentShoopingCart.setPayment(new CreditPayment(info));
-                result = currentShoopingCart.getPayment().process(amount);
+                currentShoppingCart.setPayment(new CreditPayment(info));
+                result = currentShoppingCart.getPayment().process(amount);
                 break;
         }
 
@@ -88,30 +88,30 @@ public class Terminal {
 
 
     private void endSale(){
-        List<SaleItem> saleItems = currentShoopingCart.getSaleItems();
+        List<SaleItem> saleItems = currentShoppingCart.getSaleItems();
 
         for (SaleItem item : saleItems) {
             item.getProductSpecification().decreaseQty(item.getQty());
         }
 
-        store.getSalesLog().archiveSale(currentShoopingCart);
+        store.getSalesLog().archiveSale(currentShoppingCart);
         System.out.println(new Date() + "\t" + "Sale ended");
     }
 
     public String getReceipt(){
-        return currentShoopingCart.toString();
+        return currentShoppingCart.toString();
     }
 
     public double getCashBalance(){
-        return ((CashPayment) currentShoopingCart.getPayment()).getBalance();
+        return ((CashPayment) currentShoppingCart.getPayment()).getBalance();
     }
 
     public void setPayment(double total){
-        currentShoopingCart.setPayment(new CashPayment(total));
+        currentShoppingCart.setPayment(new CashPayment(total));
     }
 
-    public ShoopingCart getCurrentShoopingCart(){
-        return currentShoopingCart;
+    public ShoppingCart getCurrentShoppingCart(){
+        return currentShoppingCart;
     }
 
     public boolean productExists(String UPC) {
