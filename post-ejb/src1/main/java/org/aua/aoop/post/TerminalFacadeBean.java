@@ -18,6 +18,7 @@ import javax.inject.Inject;
  */
 @Stateless
 @Startup
+@Remote(TerminalFacade.class)
 public class TerminalFacadeBean implements TerminalFacade {
 
     private static final Logger logger =
