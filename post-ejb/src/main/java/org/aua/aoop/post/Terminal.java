@@ -10,10 +10,7 @@ import org.aua.aoop.post.ex.ProductException;
 import org.aua.aoop.post.product.ProductSpecification;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.ejb.Stateful;
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.inject.Inject;
 
 import java.util.Date;
@@ -21,16 +18,16 @@ import java.util.List;
 import java.util.UUID;
 
 
-@Stateless
+@Stateful
 public class Terminal {
     /**/
     private UUID terminalID;
 
-    @Inject
+    @EJB
     private ShoppingCart currentShoppingCart;
 
-    @Inject
-    private transient Store store;
+    @EJB
+    private Store store;
 
     private SaleItem currentSaleItem;
 

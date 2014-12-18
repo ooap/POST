@@ -5,6 +5,7 @@ import org.aua.aoop.post.payment.AbstractPayment;
 import org.jboss.logging.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
@@ -18,7 +19,7 @@ public class TerminalFacadeBean implements TerminalFacade {
     private static final Logger logger =
             Logger.getLogger(TerminalFacadeBean.class);
 
-    @Inject
+    @EJB
     private Terminal terminal;
 
     @Override

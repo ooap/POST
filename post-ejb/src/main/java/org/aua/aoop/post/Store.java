@@ -16,9 +16,6 @@ public class Store implements Serializable {
     private ProductCatalog productCatalog;
     private SalesLog salesLog;
 
-    @Inject
-    private Terminal terminal;
-
     private String merchantID;
 
     public Store() {}
@@ -38,10 +35,6 @@ public class Store implements Serializable {
     public void saveState() {
         salesLog.saveSalesLogToFile();
         productCatalog.saveToFile(AppConfig.getInstance().getProductCatalogFileName());
-    }
-
-    public Terminal getTerminal() {
-        return terminal;
     }
 
     public ProductCatalog getProductCatalog() {

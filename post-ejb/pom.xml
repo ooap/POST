@@ -61,12 +61,6 @@
         </dependency>
         
         <dependency>
-            <groupId>org.aua.aoop.post</groupId>
-            <artifactId>post-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.jboss.spec.javax.annotation</groupId>
             <artifactId>jboss-annotations-api_1.1_spec</artifactId>
             <version>1.0.1.Final</version>
@@ -106,6 +100,11 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>ejb-api</artifactId>
+            <version>3.0</version>
+        </dependency>
 
     </dependencies>
 
@@ -131,13 +130,6 @@
                 <configuration>
                     <ejbVersion>3.1</ejbVersion>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aua.aoop.post</groupId>
-                        <artifactId>post-common</artifactId>
-                        <version>1.0-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
