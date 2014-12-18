@@ -1,7 +1,7 @@
 .idea/
 *.iml
 .DS_Store
-post-common/target/
+post-core/target/
 post-client/target/
 post-ejb/target/
 out/
