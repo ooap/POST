@@ -22,7 +22,6 @@ import java.util.UUID;
 
 
 @Stateless
-@Startup
 public class Terminal {
     /**/
     private UUID terminalID;
@@ -42,16 +41,11 @@ public class Terminal {
         terminalID = UUID.randomUUID();
     }
 
-    public void setStore( Store store ) {
-        this.store = store;
-    }
-
-
     /**
      * Starts new sale
-     *
      * @param customerName name of the customer
      */
+
     public void startNewSale(String customerName){
         currentShoppingCart.setCustomerName(customerName);
         System.out.println(new Date() + "\t" + "New sale started");

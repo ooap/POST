@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 @Stateless
 @Startup
+@Remote(TerminalFacade.class)
 public class TerminalFacadeBean implements TerminalFacade {
 
     private static final Logger logger =
@@ -19,6 +20,7 @@ public class TerminalFacadeBean implements TerminalFacade {
 
     @Inject
     private Terminal terminal;
+
     @Override
     public void startNewSale(String customerName){
           terminal.startNewSale(customerName);
@@ -65,7 +67,5 @@ public class TerminalFacadeBean implements TerminalFacade {
     }
 
     @PostConstruct
-    private void SetupStore(){
-        Store store = new Store();
-    }
+    private void SetupStore(){}
 }

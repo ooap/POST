@@ -31,6 +31,7 @@ public class ShoppingCart implements Serializable {
         total = 0;
     }
 
+
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
