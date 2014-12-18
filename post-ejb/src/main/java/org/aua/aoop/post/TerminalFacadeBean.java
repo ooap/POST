@@ -10,12 +10,6 @@ import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-/**
- * Created with IntelliJ IDEA.
- * User: vahemomjyan
- * Date: 11/16/14
- * Time: 10:54 PM
- */
 @Stateless
 @Startup
 public class TerminalFacadeBean implements TerminalFacade {
