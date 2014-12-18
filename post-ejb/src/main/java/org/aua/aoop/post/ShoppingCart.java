@@ -3,6 +3,7 @@ package org.aua.aoop.post;
 import org.aua.aoop.post.payment.AbstractPayment;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import java.io.Serializable;
 import java.util.ArrayList;

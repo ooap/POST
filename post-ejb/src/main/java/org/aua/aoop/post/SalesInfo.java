@@ -6,6 +6,7 @@ package org.aua.aoop.post;
 
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
+import javax.inject.Inject;
 
 @Singleton
 public class SalesInfo {
@@ -15,7 +16,7 @@ public class SalesInfo {
 
     private double amountToBePayed;
 
-    @EJB
+    @Inject
     private Terminal service;
 
     public Terminal getService() {

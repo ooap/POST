@@ -19,7 +19,7 @@ public class TerminalFacadeBean implements TerminalFacade {
     private static final Logger logger =
             Logger.getLogger(TerminalFacadeBean.class);
 
-    @EJB
+    @Inject
     private Terminal terminal;
 
     @Override

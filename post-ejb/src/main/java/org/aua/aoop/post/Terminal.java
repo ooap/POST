@@ -23,10 +23,10 @@ public class Terminal {
     /**/
     private UUID terminalID;
 
-    @EJB
+    @Inject
     private ShoppingCart currentShoppingCart;
 
-    @EJB
+    @Inject
     private Store store;
 
     private SaleItem currentSaleItem;
