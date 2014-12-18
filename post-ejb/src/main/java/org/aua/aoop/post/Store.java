@@ -5,10 +5,12 @@ import org.aua.aoop.post.product.ProductCatalog;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.inject.Inject;
 import java.io.Serializable;
 
 @Singleton
+@Startup
 public class Store implements Serializable {
     private Manager manager;
     private ProductCatalog productCatalog;
@@ -16,6 +18,7 @@ public class Store implements Serializable {
 
     @Inject
     private Terminal terminal;
+
     private String merchantID;
 
     public Store(){
