@@ -65,8 +65,7 @@ public class ShoppingCart implements Serializable {
         return total;
     }
 
-    @Override
-    public String toString() {
+    public String getLog() {
 
         String saleProducts = "";
 

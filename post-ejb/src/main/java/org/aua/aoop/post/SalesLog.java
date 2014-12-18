@@ -21,7 +21,7 @@ public class SalesLog implements Serializable {
 
     public void printLog() {
         for (ShoppingCart shoppingCart : processedSaleList.values()) {
-            System.out.println("\r\n" + shoppingCart.toString());
+            System.out.println("\r\n" + shoppingCart.getLog());
         }
     }
 

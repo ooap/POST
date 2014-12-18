@@ -79,7 +79,7 @@ public class StoreCLI {
                         switch (paymentType) {
 
                             case 1:     // Cash payment
-                                System.out.println("Total amount to be payed = " + service.getCurrentSale().getTotal());
+                                System.out.println("Total amount to be payed = " + Double.toString(service.getTotal()));
                                 System.out.print("Tendered money:");
                                 String tm = scanner.nextLine();
                                 double total = 0;
