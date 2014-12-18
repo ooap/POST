@@ -21,10 +21,9 @@ public class Store implements Serializable {
 
     private String merchantID;
 
-    public Store(){
-        startUp();
-    }
+    public Store() {}
 
+    @PostConstruct
     public void startUp(){
         manager = new Manager();
         productCatalog = new ProductCatalog(manager);

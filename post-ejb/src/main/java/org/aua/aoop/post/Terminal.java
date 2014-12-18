@@ -43,7 +43,6 @@ public class Terminal {
 
     /**
      * Starts new sale
-     *
      * @param customerName name of the customer
      */
 
