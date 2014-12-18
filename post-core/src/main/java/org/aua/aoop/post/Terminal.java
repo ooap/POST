@@ -9,11 +9,14 @@ import org.aua.aoop.post.ex.NotEnoughItemsException;
 import org.aua.aoop.post.ex.ProductException;
 import org.aua.aoop.post.product.ProductSpecification;
 
+import javax.ejb.Singleton;
+import javax.ejb.Stateful;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 
+@Singleton
 public class Terminal {
     /**/
     private UUID terminalID;
@@ -21,6 +24,8 @@ public class Terminal {
     private Cashier currentCashier;
     private transient Store store;
     private SaleItem currentSaleItem;
+
+    public Terminal(){}
 
     /* *
      * Constructor

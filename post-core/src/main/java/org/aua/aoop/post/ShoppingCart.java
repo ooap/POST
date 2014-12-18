@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 
+@Stateful
 public class ShoppingCart implements Serializable {
     private UUID saleID;
     private List<SaleItem> saleItems;
