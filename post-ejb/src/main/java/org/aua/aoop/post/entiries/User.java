@@ -5,13 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-/**
- * Created with IntelliJ IDEA.
- * User: vahemomjyan
- * Date: 11/29/14
- * Time: 3:31 PM
- */
-
 @Entity
 public class User {
 

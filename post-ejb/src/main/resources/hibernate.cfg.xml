@@ -10,8 +10,7 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/post</property>
         <property name="connection.username">root</property>
-        <property name="connection.password"/>
-
+        <property name="connection.password">ok</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
@@ -26,9 +25,10 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">update</property>
 
         <mapping class="org.aua.aoop.post.entiries.User"/>
+        <mapping class="org.aua.aoop.post.product.Product"/>
 
     </session-factory>
 </hibernate-configuration>

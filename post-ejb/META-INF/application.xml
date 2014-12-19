@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="6"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd">
+
+    <application-name>post-ejb</application-name>
+    <initialize-in-order>true</initialize-in-order>
+
+    <module>
+        <web>
+            <web-uri>post-ejb.war</web-uri>
+            <context-root>post-ejb</context-root>
+        </web>
+    </module>
+
+    <module>
+        <ejb>post-ejb.jar</ejb>
+    </module>
+    <library-directory>lib</library-directory>
+</application>
+
+        <!--<?xml version="1.0" encoding="UTF-8"?>-->
+        <!--<application xmlns="http://java.sun.com/xml/ns/javaee"-->
+        <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+        <!--xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd"-->
+        <!--version="6">-->
+
+        <!--<module id="post-ejb-EJB">-->
+        <!--<ejb>post-ejb.jar</ejb>-->
+        <!--</module>-->
+
+        <!--<module>-->
+        <!-- <web>-->
+        <!--   <web-uri>post-ejb.war</web-uri>-->
+        <!--   <context-root>post-ejb</context-root>-->
+        <!-- </web>-->
+        <!--</module>-->
+
+        <!--</application>-->
+

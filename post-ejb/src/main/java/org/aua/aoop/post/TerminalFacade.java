@@ -2,6 +2,7 @@ package org.aua.aoop.post;
 
 import org.aua.aoop.post.payment.AbstractPayment;
 import org.aua.aoop.post.ex.ProductException;
+import org.aua.aoop.post.sales.SaleItem;
 
 import javax.ejb.Remote;
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 public interface TerminalFacade extends Serializable {
     void startNewSale(String customerName);
 
-    void addItem(String UPC, int qty) throws ProductException;
+    void addItem(Long id, int qty) throws ProductException;
 
     SaleItem getCurrSaleItem();
 
@@ -25,5 +26,5 @@ public interface TerminalFacade extends Serializable {
 
     double getTotal();
 
-    boolean productExists(String UPC);
+    boolean productExists(Long id);
 }

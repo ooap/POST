@@ -1,9 +1,9 @@
 package org.aua.aoop.post;
 
 import org.aua.aoop.post.payment.AbstractPayment;
+import org.aua.aoop.post.sales.SaleItem;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class ShoppingCart implements Serializable {
 
     public void addSaleItem(SaleItem item) {
         saleItems.add(item);
-        total += item.getProductSpecification().getPrice() * item.getQty();
+        total += item.getProduct().getPrice() * item.getQty();
     }
 
     public List<SaleItem> getSaleItems() {

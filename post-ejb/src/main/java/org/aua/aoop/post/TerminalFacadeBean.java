@@ -2,10 +2,10 @@ package org.aua.aoop.post;
 
 import org.aua.aoop.post.ex.ProductException;
 import org.aua.aoop.post.payment.AbstractPayment;
+import org.aua.aoop.post.sales.SaleItem;
 import org.jboss.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
@@ -28,8 +28,8 @@ public class TerminalFacadeBean implements TerminalFacade {
     }
 
     @Override
-    public void addItem(String UPC, int qty) throws ProductException{
-          terminal.addItem(UPC, qty);
+    public void addItem(Long id, int qty) throws ProductException{
+          terminal.addItem(id, qty);
     }
 
     @Override
@@ -63,8 +63,8 @@ public class TerminalFacadeBean implements TerminalFacade {
     }
 
     @Override
-    public boolean productExists(String UPC){
-        return terminal.productExists(UPC);
+    public boolean productExists(Long id){
+        return terminal.productExists(id);
     }
 
     @PostConstruct

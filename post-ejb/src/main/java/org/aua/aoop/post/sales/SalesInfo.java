@@ -2,7 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.aua.aoop.post;
+package org.aua.aoop.post.sales;
+
+import org.aua.aoop.post.Terminal;
 
 import javax.ejb.EJB;
 import javax.ejb.Singleton;

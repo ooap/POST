@@ -1,16 +1,20 @@
 package org.aua.aoop.post;
 
-import org.aua.aoop.post.conf.AppConfig;
+import org.aua.aoop.post.factory.DBSetup;
 import org.aua.aoop.post.product.ProductCatalog;
+import org.aua.aoop.post.sales.SalesLog;
 
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.inject.Inject;
+import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 
 @Singleton
 @Startup
+@ManagedBean
+@RequestScoped
 public class Store implements Serializable {
     private Manager manager;
     private ProductCatalog productCatalog;
@@ -26,6 +30,7 @@ public class Store implements Serializable {
         productCatalog = new ProductCatalog(manager);
         salesLog = new SalesLog();
         merchantID = "MERCHANT_BOND_007";
+        DBSetup.getInstance();
     }
 
     public void close() {
@@ -33,8 +38,8 @@ public class Store implements Serializable {
     }
 
     public void saveState() {
-        salesLog.saveSalesLogToFile();
-        productCatalog.saveToFile(AppConfig.getInstance().getProductCatalogFileName());
+        salesLog.save();
+        productCatalog.save();
     }
 
     public ProductCatalog getProductCatalog() {

@@ -7,12 +7,11 @@ import org.aua.aoop.post.payment.CreditPayment;
 import org.aua.aoop.post.ex.ItemNotFoundException;
 import org.aua.aoop.post.ex.NotEnoughItemsException;
 import org.aua.aoop.post.ex.ProductException;
-import org.aua.aoop.post.product.ProductSpecification;
-
+import org.aua.aoop.post.product.Product;
+import org.aua.aoop.post.sales.SaleItem;
 import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.inject.Inject;
-
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -48,13 +47,13 @@ public class Terminal {
         System.out.println(new Date() + "\t" + "New sale started");
     }
 
-    public void addItem(String UPC, int qty) throws ProductException {
-        ProductSpecification specification = store.getProductCatalog().getProductSpecByID(UPC);
+    public void addItem(Long id, int qty) throws ProductException {
+        Product specification = store.getProductCatalog().getProductSpecByID(id);
         if (specification != null) {
-            if (specification.getQty() >= qty) {
+            if (specification.getQuantity() >= qty) {
                 currentSaleItem = new SaleItem(specification, qty);
                 currentShoppingCart.addSaleItem(currentSaleItem);
-                System.out.println(new Date() + "\t" + "New item added\t" + UPC + "\t" + qty + "\t" + currentShoppingCart.getCustomerName());
+                System.out.println(new Date() + "\t" + "New item added\t" + id + "\t" + qty + "\t" + currentShoppingCart.getCustomerName());
             } else {
                 throw new NotEnoughItemsException();
             }
@@ -95,7 +94,7 @@ public class Terminal {
         List<SaleItem> saleItems = currentShoppingCart.getSaleItems();
 
         for (SaleItem item : saleItems) {
-            item.getProductSpecification().decreaseQty(item.getQty());
+            item.getProduct().decreaseQty(item.getQty());
         }
 
         store.getSalesLog().archiveSale(currentShoppingCart);
@@ -118,8 +117,8 @@ public class Terminal {
         return currentShoppingCart;
     }
 
-    public boolean productExists(String UPC) {
-        return store.getProductCatalog().productExists(UPC);
+    public boolean productExists(Long id) {
+        return store.getProductCatalog().productExists(id);
     }
 
     @Override
