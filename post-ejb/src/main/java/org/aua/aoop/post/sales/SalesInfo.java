@@ -18,7 +18,6 @@ public class SalesInfo {
 
     private double amountToBePayed;
 
-    @Inject
     private Terminal service;
 
     public Terminal getService() {

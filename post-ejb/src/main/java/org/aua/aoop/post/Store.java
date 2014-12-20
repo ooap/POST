@@ -12,9 +12,7 @@ import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 
 @Singleton
-@Startup
 @ManagedBean
-@RequestScoped
 public class Store implements Serializable {
     private Manager manager;
     private ProductCatalog productCatalog;

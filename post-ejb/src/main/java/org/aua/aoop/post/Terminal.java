@@ -9,6 +9,8 @@ import org.aua.aoop.post.ex.NotEnoughItemsException;
 import org.aua.aoop.post.ex.ProductException;
 import org.aua.aoop.post.entiries.Product;
 import org.aua.aoop.post.sales.SaleItem;
+
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.inject.Inject;
@@ -18,11 +20,11 @@ import java.util.UUID;
 
 
 @Stateful
+@ManagedBean
 public class Terminal {
     /**/
     private UUID terminalID;
 
-    @Inject
     private ShoppingCart currentShoppingCart;
 
     @Inject

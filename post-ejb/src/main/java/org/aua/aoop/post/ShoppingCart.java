@@ -3,6 +3,7 @@ package org.aua.aoop.post;
 import org.aua.aoop.post.payment.AbstractPayment;
 import org.aua.aoop.post.sales.SaleItem;
 
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.util.UUID;
 
 
 @Stateful
+@ManagedBean
 public class ShoppingCart implements Serializable {
     private UUID saleID;
     private List<SaleItem> saleItems;

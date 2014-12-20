@@ -6,14 +6,10 @@ import org.aua.aoop.post.sales.SaleItem;
 import org.jboss.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Remote;
-import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-@Startup
-@Remote(TerminalFacade.class)
 public class TerminalFacadeBean implements TerminalFacade {
 
     private static final Logger logger =
@@ -22,14 +18,29 @@ public class TerminalFacadeBean implements TerminalFacade {
     @Inject
     private Terminal terminal;
 
-    @Override
-    public void startNewSale(String customerName){
-          terminal.startNewSale(customerName);
+    private String customerName;
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     @Override
-    public void addItem(Long id, int qty) throws ProductException{
-          terminal.addItem(id, qty);
+    public void startNewSale(String customerName) {
+        terminal.startNewSale(customerName);
+    }
+
+    public String startSale() {
+        startNewSale(this.customerName);
+        return "sale";
+    }
+
+    @Override
+    public void addItem(Long id, int qty) throws ProductException {
+        terminal.addItem(id, qty);
     }
 
     @Override
@@ -38,12 +49,12 @@ public class TerminalFacadeBean implements TerminalFacade {
     }
 
     @Override
-    public boolean processPayment(AbstractPayment.PaymentType paymentType, double amount, String info){
+    public boolean processPayment(AbstractPayment.PaymentType paymentType, double amount, String info) {
         return terminal.processPayment(paymentType, amount, info);
     }
 
     @Override
-    public String getReceipt(){
+    public String getReceipt() {
         return terminal.getReceipt();
     }
 
@@ -53,20 +64,21 @@ public class TerminalFacadeBean implements TerminalFacade {
     }
 
     @Override
-    public void setPayment(double total){
+    public void setPayment(double total) {
         terminal.setPayment(total);
     }
 
     @Override
-    public double getTotal(){
+    public double getTotal() {
         return terminal.getCurrentShoppingCart().getTotal();
     }
 
     @Override
-    public boolean productExists(Long id){
+    public boolean productExists(Long id) {
         return terminal.productExists(id);
     }
 
     @PostConstruct
-    private void SetupStore(){}
+    private void SetupStore() {
+    }
 }
