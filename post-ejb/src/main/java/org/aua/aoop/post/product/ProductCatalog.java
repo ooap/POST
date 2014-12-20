@@ -1,6 +1,7 @@
 package org.aua.aoop.post.product;
 
 import org.aua.aoop.post.Manager;
+import org.aua.aoop.post.entiries.Product;
 import org.aua.aoop.post.factory.ProductCrud;
 
 import java.io.*;

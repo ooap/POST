@@ -1,6 +1,6 @@
 package org.aua.aoop.post.sales;
 
-import org.aua.aoop.post.product.Product;
+import org.aua.aoop.post.entiries.Product;
 
 import java.io.Serializable;
 

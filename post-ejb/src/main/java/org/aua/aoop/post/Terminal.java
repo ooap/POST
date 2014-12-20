@@ -7,7 +7,7 @@ import org.aua.aoop.post.payment.CreditPayment;
 import org.aua.aoop.post.ex.ItemNotFoundException;
 import org.aua.aoop.post.ex.NotEnoughItemsException;
 import org.aua.aoop.post.ex.ProductException;
-import org.aua.aoop.post.product.Product;
+import org.aua.aoop.post.entiries.Product;
 import org.aua.aoop.post.sales.SaleItem;
 import javax.annotation.PostConstruct;
 import javax.ejb.*;

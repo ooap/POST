@@ -1,6 +1,6 @@
 package org.aua.aoop.post.factory;
 
-import org.aua.aoop.post.product.Product;
+import org.aua.aoop.post.entiries.Product;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

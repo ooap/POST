@@ -28,7 +28,7 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping class="org.aua.aoop.post.entiries.User"/>
-        <mapping class="org.aua.aoop.post.product.Product"/>
+        <mapping class="org.aua.aoop.post.entiries.Product"/>
 
     </session-factory>
 </hibernate-configuration>

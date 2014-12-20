@@ -1,6 +1,6 @@
 package org.aua.aoop.post;
 
-import org.aua.aoop.post.product.Product;
+import org.aua.aoop.post.entiries.Product;
 
 import java.util.Observable;
 import java.util.Observer;
